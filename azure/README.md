@@ -1,1 +1,1 @@
-[GitHub Dashboard](https://dhif4tawafcug.cloudfront.net)
+Azure
