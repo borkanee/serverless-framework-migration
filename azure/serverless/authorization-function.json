@@ -1,0 +1,22 @@
+{
+    "disabled": false,
+    "bindings": [
+        {
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "route": "auth",
+            "authLevel": "anonymous",
+            "methods": [
+                "get"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "$return"
+        }
+    ],
+    "entryPoint": "main",
+    "scriptFile": "authorization.js"
+}

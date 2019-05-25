@@ -1,0 +1,22 @@
+{
+    "disabled": false,
+    "bindings": [
+        {
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "route": "webhooks",
+            "authLevel": "anonymous",
+            "methods": [
+                "post"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "$return"
+        }
+    ],
+    "entryPoint": "main",
+    "scriptFile": "createWebhook.js"
+}

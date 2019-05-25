@@ -1,0 +1,22 @@
+{
+    "disabled": false,
+    "bindings": [
+        {
+            "type": "httpTrigger",
+            "direction": "in",
+            "name": "req",
+            "route": "notifications/{user}",
+            "authLevel": "anonymous",
+            "methods": [
+                "delete"
+            ]
+        },
+        {
+            "type": "http",
+            "direction": "out",
+            "name": "$return"
+        }
+    ],
+    "entryPoint": "main",
+    "scriptFile": "deleteNotifications.js"
+}
