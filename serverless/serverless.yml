@@ -1,0 +1,68 @@
+service: serverless
+
+provider:
+  name: google
+  runtime: nodejs8
+  project: serverless-provider-migration
+  credentials: ~/gcloud/keyfile.json
+  region: europe-west1
+
+  environment:
+    GITHUB_CLIENT: ${file(./config/config.json):GITHUB_CLIENT}
+    GITHUB_CLIENT_SECRET: ${file(./config/config.json):GITHUB_CLIENT_SECRET}
+    GITHUB_API_STATE: ${file(./config/config.json):GITHUB_API_STATE}
+    CLIENT_BASE_URL: ${file(./config/config.json):CLIENT_BASE_URL}
+    PUBLIC_VAPID_KEY: ${file(./config/config.json):PUBLIC_VAPID_KEY}
+    PRIVATE_VAPID_KEY: ${file(./config/config.json):PRIVATE_VAPID_KEY}
+    EMAIL: ${file(./config/config.json):EMAIL}
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  addSettings:
+    handler: addSettings
+    events:
+      - http: settings
+  auth:
+    handler: auth
+    events:
+      - http: auth
+  authCallback:
+    handler: authCallback
+    events:
+      - http: authCallback
+  createWebhook:
+    handler: createWebhook
+    events:
+      - http: webhooks
+  deleteNotifications:
+    handler: deleteNotifications
+    events:
+      - http: notifications/{user}
+  getSettings:
+    handler: getSettings
+    events:
+      - http: settings/{user}/{organization}
+  getUser:
+    handler: getUser
+    events:
+      - http: getUser
+  logout:
+    handler: logout
+    events:
+      - http: logout
+  payload:
+    handler: payload
+    events:
+      - http: payload
+  workerHandler:
+    handler: workerHandler
+    events:
+      - http: register
